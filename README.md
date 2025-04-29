@@ -1,7 +1,19 @@
-> use movieDB db.createCollection("movies")
-< switched to db movieDB
-> db.movies.insertMany([ { title: "Inception", director: "Christopher Nolan", year: 2010, genre: "Sci-Fi", rating: 8.8 }, { title: "The Matrix", director: "Lana Wachowski", year: 1999, genre: "Action", rating: 8.7 }, { title: "Interstellar", director: "Christopher Nolan", year: 2014, genre: "Sci-Fi", rating: 8.6 } ])
+```
+# 📘 MongoDB Basics & Discussion Guide
 
+## 🗄️ Sample MongoDB Operations
+
+```js
+> use movieDB
+< switched to db movieDB
+
+> db.createCollection("movies")
+
+> db.movies.insertMany([
+  { title: "Inception", director: "Christopher Nolan", year: 2010, genre: "Sci-Fi", rating: 8.8 },
+  { title: "The Matrix", director: "Lana Wachowski", year: 1999, genre: "Action", rating: 8.7 },
+  { title: "Interstellar", director: "Christopher Nolan", year: 2014, genre: "Sci-Fi", rating: 8.6 }
+])
 < {
   acknowledged: true,
   insertedIds: {
@@ -12,8 +24,8 @@
 }
 
 > db.movies.find();
-db.movies.find({ director: "Christopher Nolan" });
-db.movies.find({ rating: { $gt: 8.7 } });
+> db.movies.find({ director: "Christopher Nolan" });
+> db.movies.find({ rating: { $gt: 8.7 } });
 
 < {
   _id: ObjectId('6810bfdd2eb41aa0e53c36ae'),
@@ -24,8 +36,10 @@ db.movies.find({ rating: { $gt: 8.7 } });
   rating: 8.8
 }
 
-> db.movies.updateOne({ title: "Interstellar" }, { $set: { rating: 8.9 } });
-
+> db.movies.updateOne(
+    { title: "Interstellar" },
+    { $set: { rating: 8.9 } }
+);
 < {
   acknowledged: true,
   insertedId: null,
@@ -35,16 +49,15 @@ db.movies.find({ rating: { $gt: 8.7 } });
 }
 
 > db.movies.deleteOne({ title: "The Matrix" });
-
 < {
   acknowledged: true,
   deletedCount: 1
 }
+```
 
-
-
-####💬 Discussion Questions
 ---
+
+## 💬 Discussion Questions
 
 ### 1. How is the schema in MongoDB different from relational tables?
 
@@ -53,11 +66,11 @@ In MongoDB, data is stored in flexible, JSON-like documents within collections. 
 By contrast, relational databases use a fixed schema defined by tables with rows and columns. Every row must conform to the table’s predefined structure.
 
 **Key differences:**
-- MongoDB:
+- **MongoDB:**
   - Schema is flexible and optional.
   - Documents can vary in structure.
   - Changes to structure don’t require migrations.
-- Relational (SQL):
+- **Relational (SQL):**
   - Schema is strictly defined.
   - All rows must match column definitions.
   - Schema changes often need careful planning.
