@@ -110,3 +110,6 @@ Choosing between NoSQL and SQL depends on your application’s needs. NoSQL exce
 - You need complex queries with multiple joins and aggregations.
 
 ---
+
+![image](https://github.com/user-attachments/assets/eb24be2a-7623-464f-87e9-47514ed7a879)
+
